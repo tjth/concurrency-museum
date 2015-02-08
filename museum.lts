@@ -1,0 +1,18 @@
+const N = 10
+range R = 0..N
+
+EAST = (open -> ENTRANCE_OPEN),												/* open the entrance*/
+ENTRANCE_OPEN = (enter -> ENTRANCE_OPEN | close -> EAST).					/* enter or close the entrance when full */
+
+WEST = (open -> EXIT_OPEN),													/* open the exit */
+EXIT_OPEN = (exit -> EXIT_OPEN | empty -> WEST).							/* exit or close the exit when empty */
+
+DIRECTOR = (open -> close -> DIRECTOR).										/* director can open and close at any time */
+
+CONTROL = (open -> CONTROL[0]),												/* initially open can set visitors to 0 */
+CONTROL[i:R] = (when (i == 0) empty -> open -> CONTROL[0] |					/* if no visitors, no one can exit, we are empty and can open */
+				when (i > 0) exit -> CONTROL[i-1] | 						/* a visitor can exit */
+				when (i < N) enter -> CONTROL[i+1]).						/* a visitor can enter if we have space */
+
+||MUSEUM = (EAST || WEST || DIRECTOR || CONTROL).
+
