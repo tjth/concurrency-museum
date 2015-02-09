@@ -89,8 +89,13 @@ four processes are composed to form the \textbf{$||$MUSEUM} process.
 \section{Test Process}
 
 \begin{lstlisting}[language=Java]
-TEST = (close -> enter -> ERROR).
+TEST = (open -> close -> TEST |
+	      close -> enter  -> ERROR).
+
+||MUSEUM_TEST = (MUSEUM || TEST).
 \end{lstlisting}
+
+This \textbf{TEST} process synchronizes with the museum on \textit{open}, \textit{close} and \textit{enter}. It tests whether a visitor can enter the museum after closing time. LTSA shows no deadlocks or process violations meaning that the museum system passes this test.
 
 
 
@@ -109,7 +114,7 @@ then the action \textit{exit} can never happen, as we need to arrive at the \tex
 (open -> enter -> close )
 \end{lstlisting}
 
-After closing, we cannot perform \textit{exit} without process P being synchronised, leading to the \textbf{STOP} state. Hence the visitor that has entered the museum cannot leave, and the museum will remain closed forever, as we cannot perform the \textit{empty} action.
+After closing, we cannot perform \textit{exit} without process \textbf{P} being synchronised, leading to the \textbf{STOP} state. Hence the visitor that has entered the museum cannot leave, and the museum will remain closed forever, as we cannot perform the \textit{empty} action.
 
 
 
