@@ -16,3 +16,7 @@ CONTROL[i:R] = (when (i == 0) empty -> open -> CONTROL[0] |					/* if no visitor
 
 ||MUSEUM = (EAST || WEST || DIRECTOR || CONTROL).
 
+TEST = (open -> close -> TEST |
+		close -> enter -> ERROR).
+||MUSEUM_TEST = (MUSEUM || TEST).
+

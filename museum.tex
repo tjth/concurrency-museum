@@ -76,7 +76,7 @@
 %QUESTION 2
 \section{Finite State Process Model}
 
-\lstinputlisting[language=Java]{museum.lts}
+\lstinputlisting[language=Java, lastline=18]{museum.lts}
 
 The entrance and exit jump between open and closed states. The entrance is open when the museum is not yet full, and closed on
 the director's signal. The exit is always open except when the museum is empty, as no-one can exit an empty museum. The controller is
@@ -85,7 +85,6 @@ four processes are composed to form the \textbf{$||$MUSEUM} process.
 
 
 \pagebreak
-%QUESTION 3 TODO: not sure about this!
 \section{Test Process}
 
 \begin{lstlisting}[language=Java]
